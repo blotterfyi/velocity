@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Risk Reward - Spotify Technology SA (SPOT.N)</title>
+    <title>Risk Reward Report, by Blotter.fyi</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -216,9 +216,9 @@
         const radar = JSON.parse('{{radar}}');
         price_chart.reverse();
         
-        const maxTarget = parseFloat('{{low_target}}');
+        const maxTargetRaw = parseFloat('{{low_target_raw}}');
         const avgTarget = parseFloat('{{mean_target}}');
-        const minTarget = parseFloat('{{high_target}}');
+        const minTargetRaw = parseFloat('{{high_target_raw}}');
 
         // Prepare data for Chart.js
         const labels = price_chart.map(item => new Date(item.date));
@@ -226,7 +226,7 @@
 
         // Add cone data points
         const lastDate = new Date(price_chart[price_chart.length - 1].date);
-        const coneDate = new Date(lastDate.setMonth(lastDate.getMonth() + 3));
+        const coneDate = new Date(lastDate.setMonth(lastDate.getMonth() + 6));
         labels.push(coneDate);
 
         const ctx = document.getElementById('priceChart').getContext('2d');
@@ -237,7 +237,7 @@
                 datasets: [
                 {
                     label: 'Target Range',
-                    data: [...Array(closePrices.length - 1).fill(null), closePrices[closePrices.length - 1], maxTarget],
+                    data: [...Array(closePrices.length - 1).fill(null), closePrices[closePrices.length - 1], maxTargetRaw],
                     borderColor: 'rgba(0, 0, 0, 0)',
                     backgroundColor: 'rgba(173, 216, 230, 0.4)',
                     fill: 1,
@@ -245,14 +245,14 @@
                 },
                 {
                     label: 'Min Target',
-                    data: [...Array(closePrices.length - 1).fill(null), closePrices[closePrices.length - 1], minTarget],
+                    data: [...Array(closePrices.length - 1).fill(null), closePrices[closePrices.length - 1], minTargetRaw],
                     borderColor: '#e03134',
                     borderWidth: 3,
                     pointRadius: 0,
                     fill: false
                 }, {
                     label: 'Max Target',
-                    data: [...Array(closePrices.length - 1).fill(null), closePrices[closePrices.length - 1], maxTarget],
+                    data: [...Array(closePrices.length - 1).fill(null), closePrices[closePrices.length - 1], maxTargetRaw],
                     borderColor: '#85bf00',
                     borderWidth: 3,
                     pointRadius: 0,

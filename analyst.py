@@ -3,6 +3,7 @@ import pytz
 import json
 import shutil
 import shelve
+import numpy as np
 from tqdm import tqdm
 from datetime import datetime, timedelta
 from downloader import Downloader
@@ -349,6 +350,18 @@ class Analyst:
         ```
         """
 
-        radar = generate_llm_response(prompt, temperature = 0.5, model="gpt-4o")
-        radar = radar.split("<data>")[-1].split("</data>")[0]
-        return json.loads(radar)
+        results = []
+        
+        for _ in tqdm(range(5), desc="Generating AI ratings"):
+            radar = generate_llm_response(prompt, temperature=0.5, model="gpt-4o")
+            radar_data = radar.split("<data>")[-1].split("</data>")[0]
+            results.append(json.loads(radar_data))
+        
+        # Extract keys and average the results for each key
+        categories = ["Growth", "Valuation", "Risk", "Profitability", "Health"]
+        averaged_radar = {category: np.mean([result[category] for result in results]) for category in categories}
+        
+        # Round to the nearest integer
+        averaged_radar = {key: int(round(value)) for key, value in averaged_radar.items()}
+
+        return averaged_radar

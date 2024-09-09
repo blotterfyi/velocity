@@ -54,17 +54,22 @@ class HTMLer:
                 html_template = html_template.replace("{{base_thesis}}", data["base_case"]["thesis"])
                 html_template = html_template.replace("{{bear_thesis}}", data["bear_case"]["thesis"])
                 html_template = html_template.replace("{{theme_1}}", list(data["risk_reward_themes"][0].keys())[0])
-                html_template = html_template.replace("{{theme_1_sentiment}}", list(data["risk_reward_themes"][0].values())[0])
+                html_template = html_template.replace("{{theme_1_sentiment}}", list(data["risk_reward_themes"][0].values())[0].title())
                 html_template = html_template.replace("{{theme_2}}", list(data["risk_reward_themes"][1].keys())[0])
-                html_template = html_template.replace("{{theme_2_sentiment}}", list(data["risk_reward_themes"][1].values())[0])
+                html_template = html_template.replace("{{theme_2_sentiment}}", list(data["risk_reward_themes"][1].values())[0].title())
                 html_template = html_template.replace("{{theme_3}}", list(data["risk_reward_themes"][2].keys())[0])
-                html_template = html_template.replace("{{theme_3_sentiment}}", list(data["risk_reward_themes"][2].values())[0])
+                html_template = html_template.replace("{{theme_3_sentiment}}", list(data["risk_reward_themes"][2].values())[0].title())
 
                 targets = data["price_target"] # its a list
                 low_target = min(targets)
                 mean_target = sum(targets) / len(targets)
                 high_target = max(targets)
 
+                html_template = html_template.replace("{{low_target_raw}}", str(low_target))
+                html_template = html_template.replace("{{high_target_raw}}", str(high_target))
+
+                low_target= min(low_target, data["current_price"])
+                high_target = max(high_target, data["current_price"])
                 html_template = html_template.replace("{{low_target}}", str(low_target))
                 html_template = html_template.replace("{{mean_target}}", str(mean_target))
                 html_template = html_template.replace("{{high_target}}", str(high_target))
