@@ -1,8 +1,8 @@
 import os
-SEC_INSIGHTS = 5 # how many insights to extract from SEC data
-FINANCIAL_STATISTICAL_INSIGHTS = 5 # how many statistical insights to extract from data
-NEWS_INSIGHTS = 5 # how many insights to extract from news data
-EARNINGS_TRANSCRIPT_INSIGHTS = 5 # how many insights to extract from earnings transcript data
+SEC_INSIGHTS = 10 # how many insights to extract from SEC data
+FINANCIAL_STATISTICAL_INSIGHTS = 10 # how many statistical insights to extract from data
+NEWS_INSIGHTS = 10 # how many insights to extract from news data
+EARNINGS_TRANSCRIPT_INSIGHTS = 10 # how many insights to extract from earnings transcript data
 CODING_AGENT_TYPES = [
     "Monte Carlo Price Estimator",
     "Monte Carlo Earnings Estimator",
