@@ -63,5 +63,6 @@ By editing `config.py`, you can fine-tune the behavior of the agents and adjust 
 
 ```bash
 python3.9 velocity.py --ticker AAPL --openai_key <YOUR_OPENAI_API_KEY> --fmp_key <YOUR_FMP_API_KEY>
+```
 
-It only works with python3.9 right now. Make sure that is available on your system and can be accessed by python3.9
+**Note:** It only works with python3.9 right now. Make sure that is available on your system and can be accessed by python3.9
