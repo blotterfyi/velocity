@@ -1,0 +1,7 @@
+beautifulsoup4==4.12.3
+numpy==1.22.0
+openai==1.44.0
+pytz==2023.3
+Requests==2.32.3
+sec_edgar_downloader==5.0.2
+tqdm==4.65.0
