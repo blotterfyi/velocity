@@ -216,9 +216,9 @@
         const radar = JSON.parse('{{radar}}');
         price_chart.reverse();
         
-        const maxTargetRaw = parseFloat('{{low_target_raw}}');
+        const maxTargetRaw = parseFloat('{{high_target_raw}}');
         const avgTarget = parseFloat('{{mean_target}}');
-        const minTargetRaw = parseFloat('{{high_target_raw}}');
+        const minTargetRaw = parseFloat('{{low_target_raw}}');
 
         // Prepare data for Chart.js
         const labels = price_chart.map(item => new Date(item.date));
